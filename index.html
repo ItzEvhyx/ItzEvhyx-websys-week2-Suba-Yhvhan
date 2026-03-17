@@ -1,405 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yhvhan Suba - Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio~ </title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --orange-main: #F97316;
-      --orange-light: #FDBA74;
-      --orange-pale: #FEE9D6;
-      --orange-bg: #FFF7F0;
-      --orange-dark: #C2440C;
-      --orange-darker: #9A3412;
-      --white: #FFFFFF;
-      --text-dark: #7C2D12;
-      --text-body: #C2400C;
+      --orange:      #e07800;
+      --orange-dark: #c45a00;
+      --card-bg:     #fffaf0;
+      --page-bg:     #FFEECF;
+      --border:      2.5px solid #e07800;
+      --radius:      18px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Fredoka', sans-serif;
-      background-color: var(--orange-bg);
-      background-image:
-        linear-gradient(var(--orange-light) 1px, transparent 1px),
-        linear-gradient(90deg, var(--orange-light) 1px, transparent 1px);
-      background-size: 28px 28px;
-      color: var(--text-dark);
+      background-color: var(--page-bg);
+      color: var(--orange-dark);
       min-height: 100vh;
-      width: 100%;
     }
 
-    /* ── NAV ── */
-    .nav-wrapper {
+    .profile-banner {
+      position: relative;
       width: 100%;
-      padding: 18px 32px 0;
+      height: 40vh;
+      min-height: 280px;
+    }
+
+    .profile-banner img.wallpaper {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .profile-avatar-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 36px;
+      transform: translateY(50%);
+      z-index: 10;
+    }
+
+    .profile-avatar-wrap img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+      border: 6px solid var(--page-bg);
+      display: block;
     }
 
     nav {
-      position: sticky;
-      top: 12px;
-      z-index: 100;
-      background: var(--orange-pale);
-      border: 2.5px solid var(--orange-main);
-      border-radius: 50px;
-      padding: 10px 36px;
+      position: absolute;
+      top: 18px;
+      left: 22px;
+      right: 22px;
+      z-index: 20;
+      border: var(--border);
+      border-radius: var(--radius);
+      padding: 22px 36px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 4px 4px 0 var(--orange-main);
+      background: var(--card-bg);
     }
 
-    nav .nav-brand {
-      font-size: 1.15rem;
+    nav .nav-home {
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--orange-dark);
+      text-decoration: none;
+      margin-right: auto;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 32px;
+      gap: 52px;
     }
 
     nav ul li a {
       text-decoration: none;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      transition: color 0.2s;
-    }
-
-    nav ul li a:hover { color: var(--orange-dark); }
-
-    /* ── MAIN LAYOUT ── */
-    .page-wrapper {
-      width: 100%;
-      padding: 28px 32px 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    /* ── CARD ── */
-    .card {
-      background: var(--orange-pale);
-      border: 2.5px solid var(--orange-main);
-      border-radius: 18px;
-      box-shadow: 5px 5px 0 var(--orange-main);
-      padding: 24px 28px;
-    }
-
-    .card-title {
-      font-size: 1.15rem;
-      font-weight: 700;
       color: var(--orange-dark);
-      margin-bottom: 12px;
+      font-size: 1.35rem;
+      font-weight: 500;
     }
 
-    /* ── HERO ── */
-    .hero-card {
+    nav ul li a:hover { opacity: .7; }
+
+    .profile-identity {
+      padding: 14px 32px 0 280px;
       display: flex;
       align-items: center;
-      gap: 28px;
-      flex-wrap: wrap;
-      background: var(--orange-pale);
-      border: 2.5px solid var(--orange-main);
-      border-radius: 18px;
-      box-shadow: 5px 5px 0 var(--orange-main);
-      padding: 28px 32px;
-      position: relative;
-      overflow: hidden;
+      justify-content: space-between;
+      min-height: 120px;
     }
 
-    /* Framework wallpaper as background cover */
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('assets/framework_wallpaper.png') center center / cover no-repeat;
-      opacity: 0.18;
-      border-radius: 16px;
-      z-index: 0;
-    }
-
-    .hero-card > * { position: relative; z-index: 1; }
-
-    .hero-avatar {
-      flex-shrink: 0;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid var(--orange-main);
-      background: var(--white);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 3px 3px 0 var(--orange-main);
-    }
-
-    .hero-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-avatar .avatar-placeholder {
-      font-size: 3rem;
-      color: var(--orange-light);
-    }
-
-    .hero-info { flex: 1; min-width: 180px; }
-
-    .hero-info h1 {
-      font-size: 2rem;
+    .name-block h1 {
+      font-size: 2.8rem;
       font-weight: 700;
-      color: var(--orange-dark);
+      color: var(--orange);
       line-height: 1.1;
     }
 
-    .hero-info p {
-      font-size: 0.95rem;
+    .name-block p {
+      font-size: 1.1rem;
       font-weight: 500;
-      color: var(--text-body);
-      margin-top: 5px;
+      color: var(--orange-dark);
+      text-align: center;
+      margin-top: 6px;
     }
 
-    .hero-tagline {
-      flex-shrink: 0;
-      background: var(--orange-pale);
-      border: 2.5px solid var(--orange-main);
-      border-radius: 14px;
-      padding: 16px 22px;
-      font-size: 1rem;
+    .tagline-box {
+      border: var(--border);
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      padding: 20px 30px;
+      font-size: 1.2rem;
       font-weight: 600;
       color: var(--orange-dark);
       text-align: center;
-      max-width: 230px;
-      box-shadow: 4px 4px 0 var(--orange-main);
-      margin-left: auto;
+      flex: 1;
+      margin-left: 32px;
+      line-height: 1.5;
     }
 
-    /* ── TWO COL ── */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
+    .main-content {
+      padding: 24px 22px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    /* ── ABOUT TEXT ── */
-    .about-text p {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text-body);
-      line-height: 1.7;
+    .card {
+      border: var(--border);
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      padding: 28px 32px;
     }
 
-    /* ── LISTS ── */
-    .styled-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .styled-list li {
-      font-size: 0.97rem;
-      font-weight: 500;
-      color: var(--text-body);
-      padding: 3px 0;
-    }
-
-    .styled-list li::before {
-      content: "• ";
-      color: var(--orange-main);
+    .card h2 {
+      font-size: 1.6rem;
       font-weight: 700;
+      color: var(--orange-dark);
+      margin-bottom: 18px;
     }
 
-    /* ── MIXED CONTENT CARD (about continuation + websites) ── */
-    .split-card {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      background: var(--orange-pale);
-      border: 2.5px solid var(--orange-main);
-      border-radius: 18px;
-      box-shadow: 5px 5px 0 var(--orange-main);
-      padding: 24px 28px;
+    .row {
+      display: flex;
+      gap: 20px;
     }
 
-    .split-left { border-right: 2px dashed var(--orange-light); padding-right: 24px; }
-
-    /* ── WEBSITES ── */
-    .websites-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .websites-list li {
-      font-size: 0.97rem;
+    .card-about { flex: 1.4; }
+    .card-about p {
+      font-size: 1.15rem;
       font-weight: 600;
+      line-height: 1.85;
+      text-align: justify;
       color: var(--orange-dark);
-      padding: 4px 0;
+      margin-bottom: 18px;
     }
+    .card-about p:last-child { margin-bottom: 0; }
 
-    .websites-list li::before {
-      content: "• ";
-      color: var(--orange-main);
-      font-weight: 700;
-    }
-
-    .websites-list li a {
+    .card-hobbies { flex: 1; }
+    .card-hobbies ul { list-style: none; }
+    .card-hobbies ul li {
+      font-size: 1.15rem;
+      font-weight: 600;
+      padding: 5px 0;
       color: var(--orange-dark);
-      text-decoration: none;
-      transition: color 0.2s;
     }
+    .card-hobbies ul li::before { content: "• "; font-weight: 700; }
 
-    .websites-list li a:hover {
-      color: var(--text-dark);
-      text-decoration: underline;
+    .card-websites { flex: 1; }
+    .card-websites ol {
+      list-style: decimal;
+      padding-left: 24px;
     }
-
-    /* ── CONTACT ── */
-    .contact-card {
-      background: var(--orange-pale);
-      border: 2.5px solid var(--orange-main);
-      border-radius: 18px;
-      box-shadow: 5px 5px 0 var(--orange-main);
-      padding: 24px 28px;
+    .card-websites ol li {
+      font-size: 1.15rem;
+      font-weight: 600;
+      padding: 5px 0;
+      color: var(--orange-dark);
     }
+    .card-websites ol li a { color: var(--orange-dark); text-decoration: none; }
+    .card-websites ol li a:hover { text-decoration: underline; }
 
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      margin-top: 16px;
+      margin-top: 8px;
     }
 
     .contact-col h3 {
-      font-size: 1rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--orange-dark);
-      margin-bottom: 10px;
-    }
-
-    .contact-col ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .contact-col ul li {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-body);
-      margin-bottom: 5px;
-      line-height: 1.4;
-    }
-
-    .contact-col ul li::before {
-      content: "• ";
-      color: var(--orange-main);
-    }
-
-    .contact-col ul li a {
-      color: var(--text-body);
-      text-decoration: none;
-    }
-
-    .contact-col ul li a:hover {
-      color: var(--orange-dark);
-      text-decoration: underline;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--orange-pale);
-      border: 2.5px solid var(--orange-main);
-      border-radius: 18px;
-      box-shadow: 5px 5px 0 var(--orange-main);
-      padding: 28px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
-    footer .footer-label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-body);
-      margin-bottom: 6px;
-    }
-
-    footer .footer-quote {
-      font-size: 1.5rem;
-      font-weight: 700;
+    .contact-col ul { list-style: none; }
+    .contact-col ul li {
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 4px 0;
       color: var(--orange-dark);
     }
+    .contact-col ul li::before { content: "• "; }
+    .contact-col ul li a { color: var(--orange-dark); text-decoration: none; }
+    .contact-col ul li a:hover { text-decoration: underline; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .nav-wrapper { padding: 12px 16px 0; }
-      nav { border-radius: 18px; flex-direction: column; gap: 10px; top: 8px; }
-      nav ul { gap: 16px; flex-wrap: wrap; justify-content: center; }
-      .page-wrapper { padding: 18px 16px 32px; }
-      .hero-card { flex-direction: column; text-align: center; }
-      .hero-tagline { margin: 0 auto; max-width: 100%; }
-      .two-col { grid-template-columns: 1fr; }
-      .split-card { grid-template-columns: 1fr; }
-      .split-left { border-right: none; border-bottom: 2px dashed var(--orange-light); padding-right: 0; padding-bottom: 20px; margin-bottom: 4px; }
-      .contact-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 480px) {
-      .contact-grid { grid-template-columns: 1fr; }
+    .card-footer .footer-tagline {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin-top: 12px;
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <div class="nav-wrapper">
+  <div class="profile-banner" id="home">
+    <img class="wallpaper" src="assets/framework_wallpaper.png" alt="banner"/>
+
     <nav>
-      <span class="nav-brand">Home</span>
+      <a href="#home" class="nav-home">Home</a>
       <ul>
         <li><a href="#about">About me</a></li>
         <li><a href="#hobbies">Hobbies</a></li>
         <li><a href="#websites">Websites</a></li>
-        <li><a href="#contacts">Contacts</a></li>
+        <li><a href="#contact">Contacts</a></li>
       </ul>
     </nav>
+
+    <div class="profile-avatar-wrap">
+      <img src="assets/profile_pic_icon.png" alt="Yhvhan Suba"/>
+    </div>
   </div>
 
-  <div class="page-wrapper">
-
-    <!-- HERO -->
-    <div class="hero-card" id="home">
-      <div class="hero-avatar">
-        <img src="assets/profile_pic_icon.png" alt="Yhvhan Suba"
-             onerror="this.parentElement.innerHTML='<span class=\'avatar-placeholder\'>👤</span>'">
-      </div>
-      <div class="hero-info">
-        <h1>Yhvhan Suba</h1>
-        <p>Bachelor of Science in Information Technology INF242</p>
-      </div>
-      <div class="hero-tagline">
-        Building the future, one line of code at a time.
-      </div>
+  <div class="profile-identity">
+    <div class="name-block">
+      <h1>Yhvhan Suba</h1>
+      <p>Bachelor of Science in Information Technology INF242</p>
     </div>
+    <div class="tagline-box">
+      Building the future, one line of code at a time.
+    </div>
+  </div>
 
-    <!-- ABOUT + HOBBIES ROW -->
-    <div class="two-col">
-      <div class="card" id="about">
-        <div class="card-title">About me</div>
-        <div class="about-text">
-          <p>Greetings! I'm Yhvhan Suba, a sophomore BSIT student from National University Manila and an aspiring full-stack developer. I specialize in building software that blends creative frontend experiences with reliable, scalable backend systems.</p>
-        </div>
+  <div class="main-content">
+
+    <div class="row">
+      <div id="about" class="card card-about">
+        <h2>About me</h2>
+        <p>
+          Greetings! I'm Yhvhan Suba, a sophomore BSIT student from National University Manila and an
+          aspiring full-stack developer. I specialize in building software that blends creative frontend
+          experiences with reliable, scalable backend systems.
+        </p>
+        <p>
+          My approach to development is simple: create applications where design and infrastructure work
+          seamlessly together. From crafting intuitive user interfaces to architecting backend logic and
+          deploying scalable cloud solutions, I focus on delivering products that are both functional and
+          impactful.
+        </p>
       </div>
-
-      <div class="card" id="hobbies">
-        <div class="card-title">Hobbies</div>
-        <ul class="styled-list">
+      <div id="hobbies" class="card card-hobbies">
+        <h2>Hobbies</h2>
+        <ul>
           <li>Gaming</li>
           <li>Arts</li>
           <li>Working out</li>
@@ -410,28 +291,20 @@
       </div>
     </div>
 
-    <!-- ABOUT CONTINUATION + FAVOURITE WEBSITES -->
-    <div class="split-card">
-      <div class="split-left">
-        <div class="about-text">
-          <p>My approach to development is simple: create applications where design and infrastructure work seamlessly together. From crafting intuitive user interfaces to architecting backend logic and deploying scalable cloud solutions, I focus on delivering products that are both functional and impactful.</p>
-        </div>
-      </div>
-
-      <div id="websites">
-        <div class="card-title">Favourite Websites</div>
-        <ul class="websites-list">
-          <li><a href="https://aniwatchtv.to" target="_blank" rel="noopener">Aniwatchtv.to</a></li>
-          <li><a href="https://mangakakalot.com" target="_blank" rel="noopener">Mangakakalot.com</a></li>
-          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
-          <li><a href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a></li>
-        </ul>
+    <div class="row">
+      <div id="websites" class="card card-websites" style="flex:1;">
+        <h2>Favourite Websites</h2>
+        <ol>
+          <li><a href="https://aniwatchtv.to" target="_blank">Aniwatchtv.to</a></li>
+          <li><a href="https://mangakakalot.com" target="_blank">Mangakakalot.com</a></li>
+          <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
+          <li><a href="https://pinterest.com" target="_blank">Pinterest</a></li>
+        </ol>
       </div>
     </div>
 
-    <!-- CONTACT -->
-    <div class="contact-card" id="contacts">
-      <div class="card-title">Contact section</div>
+    <div id="contact" class="card">
+      <h2>Contact section</h2>
       <div class="contact-grid">
         <div class="contact-col">
           <h3>Mobile Numbers</h3>
@@ -440,7 +313,6 @@
             <li>+969-565-5154</li>
           </ul>
         </div>
-
         <div class="contact-col">
           <h3>Emails</h3>
           <ul>
@@ -448,32 +320,30 @@
             <li><a href="mailto:evhyyy7@gmail.com">evhyyy7@gmail.com</a></li>
           </ul>
         </div>
-
         <div class="contact-col">
           <h3>Professionals</h3>
           <ul>
-            <li><a href="https://github.com/ItzEvhyx" target="_blank" rel="noopener">ItzEvhyx – GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/yhvhan-suba-4b985339b/" target="_blank" rel="noopener">Yhvhan Suba – LinkedIn</a></li>
+            <li><a href="https://github.com/ItzEvhyx" target="_blank">ItzEvhyx - GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/yhvhan-suba-4b985339b/" target="_blank">Yhvhan Suba - LinkedIn</a></li>
           </ul>
         </div>
-
         <div class="contact-col">
           <h3>Social Media</h3>
           <ul>
-            <li><a href="https://www.instagram.com/_vhxn_/" target="_blank" rel="noopener">@___vhxn___ – Instagram</a></li>
-            <li><a href="https://www.facebook.com/Yvhyy.suba.75" target="_blank" rel="noopener">Yhvhan Suba – Facebook</a></li>
-            <li><a href="https://www.tiktok.com/@evhyti" target="_blank" rel="noopener">Evhy – TikTok</a></li>
+            <li><a href="https://www.instagram.com/_vhxn_/" target="_blank">@____vhxn____ - Instagram</a></li>
+            <li><a href="https://www.facebook.com/Yvhyy.suba.75" target="_blank">Yhvhan Suba - Facebook</a></li>
+            <li><a href="https://www.tiktok.com/@evhyti" target="_blank">Evhy - TikTok</a></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-label">Footer</div>
-      <div class="footer-quote">"Functionality meets Creativity"</div>
-    </footer>
+    <div class="card card-footer">
+      <h2>Footer</h2>
+      <p class="footer-tagline">"Functionality meets Creativity"</p>
+    </div>
 
   </div>
+
 </body>
 </html>
